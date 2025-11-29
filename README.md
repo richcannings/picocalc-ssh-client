@@ -1,14 +1,14 @@
-# PicoCalc Terminal
+# PicoCalc SSH Terminal
 
 A standalone SSH client and VT100/ANSI terminal emulator for the [Raspberry Pi Pico 2 W](https://www.raspberrypi.com/products/raspberry-pi-pico-2/) running on the [ClockworkPi PicoCalc](https://www.clockworkpi.com/picocalc).
 
-This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal capable of connecting to remote servers via SSH.
+This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal capable of connecting to remote servers via SSH. It is a fork of the [picocalc-wezterm](https://github.com/wez/picocalc-wezterm) project, which provides a similar experience, but with limited character support.   
 
 ## Features
 
 *   **Standalone SSH Client**: Connect to any SSH server directly from the device.
 *   **Robust Terminal Emulation**: Built on the `vte` crate for accurate ANSI/VT100 parsing.
-*   **Extended Character Support**: Custom rendering for box-drawing characters (lines, corners, shades) for TUI applications like `htop`, `mc`, and `tmux`.
+*   **Extended Character Support**: Custom rendering for box-drawing characters (lines, corners, shades) for TUI applications like `vim`, `gemini-cli`, `mc`, `htop`, `ollama`, and `tmux`.
 *   **Local Shell**: Built-in commands for device management (WiFi config, battery status, backlight control).
 *   **Hardware Accelerated**: Uses the RP2350's capabilities and the ILI9488 display for fast rendering.
 
