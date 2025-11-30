@@ -14,6 +14,7 @@ This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal
 *   **Standalone SSH Client**: Connect to any SSH server directly from the device.
 *   **Robust Terminal Emulation**: Built on the `vte` crate for accurate ANSI/VT100 parsing.
 *   **Extended Character Support**: Custom rendering for box-drawing characters (lines, corners, shades) for TUI applications like `vim`, `gemini-cli`, `mc`, `htop`, `ollama`, and `tmux`.
+*   **Scrolling**: Scroll through the command history up to 200 lines.
 *   **Local Shell**: Built-in commands for device management (WiFi config, battery status, backlight control).
 *   **Hardware Accelerated**: Uses the RP2350's capabilities and the ILI9488 display for fast rendering.
 
@@ -23,7 +24,15 @@ This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal
 *   **Raspberry Pi Pico 2 W** (RP2350 with WiFi)
     *   *Note: This firmware is specifically designed for the RP2350 architecture.*
 
-## Getting Started
+## Installing the Released Firmware
+
+1. Download the latest firmware from the [releases](https://github.com/richcannings/picocalc-wezterm/releases) page, like [picocalc-wezterm.prettier.v0.1.uf2](https://github.com/richcannings/picocalc-wezterm/releases/download/v0.1/picocalc-wezterm.prettier.v0.1.uf2).
+2. Flash:
+    * Hold the BOOTSEL button on your Pico 2 W while plugging it in.
+    * Copy the downloaded firmware, e.g. `picocalc-wezterm.prettier.v0.1.uf2`, to the mounted RPI-RP2 drive.
+    * Reboot the Pico 2 W.
+
+## Getting Started with Development
 
 ### Prerequisites
 
