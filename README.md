@@ -5,8 +5,8 @@ A standalone SSH client and VT100/ANSI terminal emulator for the [Raspberry Pi P
 This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal capable of connecting to remote servers via SSH. It is a fork of the [picocalc-wezterm](https://github.com/wez/picocalc-wezterm) project, and adds greater terminal character support and scrolling.
 
 <p align="center">
-  <img src="img/picocalc-wezterm-gemini.png" width="45%" />
-  <img src="img/picocalc-wezterm-mc.png" width="45%" />
+  <img src="img/picocalc-ssh-client-gemini.png" width="45%" />
+  <img src="img/picocalc-ssh-client-mc.png" width="45%" />
 </p>
 
 ## Features
@@ -26,10 +26,10 @@ This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal
 
 ## Installing the Released Firmware
 
-1. Download the latest firmware from the [releases](https://github.com/richcannings/picocalc-wezterm/releases) page, like [picocalc-wezterm.prettier.v0.1.uf2](https://github.com/richcannings/picocalc-wezterm/releases/download/v0.1/picocalc-wezterm.prettier.v0.1.uf2).
+1. Download the latest firmware from the [releases](https://github.com/richcannings/picocalc-ssh-client/releases) page, like [picocalc-ssh-client.v0.2.uf2](https://github.com/richcannings/picocalc-ssh-client/releases/download/v0./picocalc-ssh-client.v0.2.uf2).
 2. Flash:
     * Hold the BOOTSEL button on your Pico 2 W while plugging it in.
-    * Copy the downloaded firmware, e.g. `picocalc-wezterm.prettier.v0.1.uf2`, to the mounted RPI-RP2 drive.
+    * Copy the downloaded firmware, e.g. `picocalc-ssh-client.v0.2.uf2`, to the mounted RPI-RP2 drive.
     * Reboot the Pico 2 W.
 
 ## Getting Started with Development
@@ -70,8 +70,8 @@ You will need a standard Rust toolchain and a few helper tools:
 3.  **Generate UF2 File**:
     ```bash
     # Convert the ELF to UF2
-    cp target/thumbv8m.main-none-eabihf/release/picocalc-wezterm target/thumbv8m.main-none-eabihf/release/picocalc-wezterm.elf
-    picotool uf2 convert target/thumbv8m.main-none-eabihf/release/picocalc-wezterm.elf picocalc.uf2
+    cp target/thumbv8m.main-none-eabihf/release/picocalc-ssh-client target/thumbv8m.main-none-eabihf/release/picocalc-ssh-client.elf
+    picotool uf2 convert target/thumbv8m.main-none-eabihf/release/picocalc-ssh-client.elf picocalc.uf2
     ```
 
 4.  **Flash**:
