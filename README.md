@@ -102,6 +102,15 @@ $ config set ssh_user myuser
 $ config set ssh_pw mypassword
 ```
 
+### Scrolling
+
+You can scroll through the command history (up to 200 lines) using the following key combinations:
+
+*   `Ctrl + UpArrow`: Scroll up
+*   `Ctrl + DownArrow`: Scroll down
+
+Typing any character or receiving new output from the server will automatically reset the view to the bottom.
+
 ### Local Commands
 
 *   `cls`: Clear the screen.
