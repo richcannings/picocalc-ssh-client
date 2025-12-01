@@ -14,7 +14,7 @@ This project transforms your PicoCalc into a pocket-sized, WiFi-enabled terminal
 *   **Standalone SSH Client**: Connect to any SSH server directly from the device.
 *   **Robust Terminal Emulation**: Built on the `vte` crate for accurate ANSI/VT100 parsing.
 *   **Extended Character Support**: Custom rendering for box-drawing characters (lines, corners, shades) for TUI applications like `vim`, `gemini-cli`, `mc`, `htop`, `ollama`, and `tmux`.
-*   **Scrolling**: Scroll through the command history up to 200 lines.
+*   **Scrolling**: Scroll through the command history up to 500 lines.
 *   **Local Shell**: Built-in commands for device management (WiFi config, battery status, backlight control).
 *   **Hardware Accelerated**: Uses the RP2350's capabilities and the ILI9488 display for fast rendering.
 
@@ -57,8 +57,8 @@ You will need a standard Rust toolchain and a few helper tools:
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/richcannings/picocalc-wezterm.git
-    cd picocalc-wezterm
+    git clone https://github.com/richcannings/picocalc-ssh-client.git
+    cd picocalc-ssh-client
     ```
 
 2.  **Build the Firmware**:
@@ -118,7 +118,7 @@ $ config set ssh_pw mypassword
 
 ### Scrolling
 
-You can scroll through the command history (up to 200 lines) using the following key combinations:
+You can scroll through the command history (up to 500 lines) using the following key combinations:
 
 *   `Ctrl + UpArrow`: Scroll up
 *   `Ctrl + DownArrow`: Scroll down
