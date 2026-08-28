@@ -1393,6 +1393,7 @@ dependencies = [
  "cyw43",
  "cyw43-pio",
  "display-interface",
+ "ed25519-dalek",
  "embassy-embedded-hal",
  "embassy-executor",
  "embassy-futures",

@@ -60,6 +60,7 @@ mod process;
 mod psram;
 mod rng;
 mod screen;
+mod sshkey;
 mod storage;
 mod time;
 

@@ -20,6 +20,7 @@ critical-section = "1.2.0"
 cyw43 = { version = "*", features = [ "firmware-logs" ] }
 cyw43-pio = { version = "*" }
 display-interface = "0.5.0"
+ed25519-dalek = { version = "2.1.1", default-features = false }
 embassy-embedded-hal = { version = "*" }
 embassy-executor = { version = "*", features = [ "arch-cortex-m", "executor-thread", "executor-interrupt", "nightly" ] }
 embassy-futures = { version = "*" }

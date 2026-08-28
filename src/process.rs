@@ -125,6 +125,7 @@ impl LocalShell {
             "cls" => crate::screen::cls_command(&argv).await,
             "config" => crate::config::config_command(&argv).await,
             "free" => crate::heap::free_command(&argv).await,
+            "keygen" => crate::sshkey::keygen_command(&argv).await,
             "ls" => ls_command(&argv).await,
             "reboot" => crate::keyboard::reboot(),
             "ssh" => crate::net::ssh_command(&argv).await,

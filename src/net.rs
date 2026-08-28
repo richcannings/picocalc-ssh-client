@@ -26,7 +26,7 @@ use embassy_time::{Duration, with_timeout};
 use embedded_io_async::{Read, Write as _};
 use rand_core::RngCore;
 use static_cell::StaticCell;
-use sunset::{CliEvent, SessionCommand};
+use sunset::{CliEvent, SessionCommand, SignKey};
 use sunset_embassy::{ChanInOut, ProgressHolder, SSHClient};
 
 extern crate alloc;
@@ -303,6 +303,7 @@ async fn ssh_session_task(host: String, command: Option<String>) {
 
                     let runner = ssh_client.run(&mut read, &mut write);
                     let mut progress = ProgressHolder::new();
+                    let mut pubkey_tried = false;
                     let ssh_ticker = async {
                         loop {
                             match ssh_client.progress(&mut progress).await {
@@ -352,7 +353,21 @@ async fn ssh_session_task(host: String, command: Option<String>) {
                                         .expect("set pw");
                                     }
                                     CliEvent::Pubkey(req) => {
-                                        req.skip().expect("skip pubkey");
+                                        let key = if pubkey_tried {
+                                            None
+                                        } else {
+                                            crate::sshkey::load_signing_key().await
+                                        };
+                                        pubkey_tried = true;
+                                        match key {
+                                            Some(key) => {
+                                                req.pubkey(SignKey::Ed25519(key))
+                                                    .expect("set pubkey");
+                                            }
+                                            None => {
+                                                req.skip().expect("skip pubkey");
+                                            }
+                                        }
                                     }
                                     CliEvent::AgentSign(req) => {
                                         req.skip().expect("skip agentsign");

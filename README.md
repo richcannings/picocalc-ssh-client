@@ -97,7 +97,8 @@ $ reboot
 ```
 
 > [!CAUTION]
-> Credentials are stored in clear-text in the device's flash memory.
+> Credentials (and the SSH private key, if you generate one) are stored
+> unencrypted in the device's flash memory.
 
 ### Connecting via SSH
 
@@ -115,6 +116,52 @@ You can also save credentials to avoid typing them every time:
 $ config set ssh_user myuser
 $ config set ssh_pw mypassword
 ```
+
+### SSH Key Authentication
+
+The device can generate its own Ed25519 keypair and use it to authenticate,
+so you don't need to type (or store) a password at all. The private key is
+generated on-device and never leaves it; only the public key needs to be
+shared.
+
+```bash
+# Generate a keypair (refuses to overwrite an existing one)
+$ keygen
+
+# Add the printed "ssh-ed25519 AAAA..." line to the *server's*
+# ~/.ssh/authorized_keys file
+
+# Re-display the public key at any time
+$ keygen show
+
+# Replace the existing keypair (servers using the old public key
+# will need to be updated, or they'll stop accepting it)
+$ keygen force
+```
+
+Once a key is generated, `ssh` tries it automatically before falling back to
+`ssh_pw` or an interactive password prompt.
+
+#### Retrieving the public key
+
+The public key line is long (an Ed25519 `ssh-ed25519 AAAA...` line is around
+100 characters), too long to reliably copy by hand off the LCD. Instead,
+retrieve it over the device's USB serial log port:
+
+1. Connect a USB cable to the PicoCalc (the same port used to flash it, once
+   it's booted normally rather than in BOOTSEL mode).
+2. Open a serial terminal on that port. Any baud rate works, since it's a
+   USB-CDC virtual serial port, not a real UART:
+   * **Linux**: `dmesg | tail` after plugging in to find the device (usually
+     `/dev/ttyACM0`), then `screen /dev/ttyACM0 115200`.
+   * **macOS**: `ls /dev/tty.usbmodem*`, then `screen /dev/tty.usbmodem* 115200`.
+   * **Windows**: check Device Manager → Ports for the new COM port, then
+     open it in PuTTY (connection type "Serial", any speed) or a similar
+     terminal.
+3. On the PicoCalc, run `keygen show`. The `ssh-ed25519 AAAA... picocalc-ssh-client`
+   line is printed to that serial terminal, where it can be copied exactly
+   (unlike the wrapped text on the LCD) and pasted into the server's
+   `~/.ssh/authorized_keys`.
 
 ### Scrolling
 
@@ -141,6 +188,7 @@ $ config rm scroll  # Resets to default (200)
 *   `bl kbd <percent>`: Set keyboard backlight brightness (requires updated keyboard firmware).
 *   `free`: Show memory usage.
 *   `bootsel`: Reboot into bootloader mode.
+*   `keygen [force|show]`: Generate (or re-display) an SSH keypair for public-key authentication.
 
 ## Credits
 
